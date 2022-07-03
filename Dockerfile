@@ -10,6 +10,8 @@ RUN gem install bundler
 COPY Gemfile* /myapp/
 RUN bundle install
 
+COPY . /myapp/
+
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
