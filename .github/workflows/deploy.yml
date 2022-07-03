@@ -1,0 +1,36 @@
+name: deploy
+
+# FIXME:
+on: push
+
+env:
+  AWS_REGION: ap-northeast-1
+
+jobs:
+  deploy-ecr:
+    name: deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Image Build and Push to Amazon ECR
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: rails_on_ecs_repository
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG} .
+          docker push ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}
