@@ -1,6 +1,6 @@
 name: deploy
 
-# FIXME:
+# FIXME: change triggers
 on: push
 
 env:
