@@ -51,4 +51,5 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.render-container.outputs.task-definition }}
+          service: rails_on_ecs
           cluster: rails-on-ecs
