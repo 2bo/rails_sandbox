@@ -34,3 +34,21 @@ jobs:
         run: |
           docker build -t ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG} .
           docker push ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}
+
+      - name: logout
+        if: always()
+        run: docker logout ${{ steps.login-ecr.outputs.registry }}
+
+      - name: render new task definition
+        id: render-container
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ecs/rails-ecs-task-def.json
+          container-name: web
+          image: ${{ steps.login-ecr.outputs.registry }}/rails_on_ecs_repository:${{ github.sha }}
+
+      - name: register new task definition family
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.render-container.outputs.task-definition }}
+          cluster: rails-on-ecs
