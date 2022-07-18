@@ -26,14 +26,36 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Image Build and Push to Amazon ECR
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: rails_on_ecs_repository
           IMAGE_TAG: ${{ github.sha }}
+        with:
+          push: true
+          tags: ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+      - name: Move cache
         run: |
-          docker build -t ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG} .
-          docker push ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
       - name: logout
         if: always()
