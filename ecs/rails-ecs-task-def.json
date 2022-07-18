@@ -1,0 +1,23 @@
+{
+  "family": "rails_on_ecs_definition",
+  "executionRoleArn": "arn:aws:iam::451365101484:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [ "FARGATE" ],
+  "cpu": "256",
+  "memory": "512",
+  "containerDefinitions": [
+    {
+      "name": "web",
+      "image" : "451365101484.dkr.ecr.ap-northeast-1.amazonaws.com/rails_on_ecs_repository",
+      "essential": true,
+      "memory": 384,
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 3000,
+          "protocol": "tcp"
+        }
+      ]
+    }
+  ]
+}
