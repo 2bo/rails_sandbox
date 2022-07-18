@@ -42,13 +42,9 @@ jobs:
 
       - name: Build and push
         uses: docker/build-push-action@v3
-        env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: rails_on_ecs_repository
-          IMAGE_TAG: ${{ github.sha }}
         with:
           push: true
-          tags: ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}
+          tags: ${{ steps.login-ecr.outputs.registry }}/rails_on_ecs_repository:${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
