@@ -38,6 +38,3 @@ Style/IfUnlessModifier:
 # URISchemes: http, https
 Layout/LineLength:
   Max: 198
-
-RSpec/NestedGroups:
-  Max: 5 # default: 3
