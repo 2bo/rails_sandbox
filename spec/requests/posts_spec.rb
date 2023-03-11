@@ -22,7 +22,7 @@ RSpec.describe 'Posts' do
                                       },
                                       {
                                         id: first_post.id,
-                                        title: 'post',
+                                        title: 'first post',
                                         body: first_post.body,
                                         created_at: first_post.created_at.iso8601(3),
                                         updated_at: first_post.updated_at.iso8601(3)
