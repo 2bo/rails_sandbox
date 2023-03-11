@@ -9,3 +9,9 @@ require:
 
 Style/Documentation:
   Enabled: false
+
+RSpec/ExampleLength:
+  Max: 30
+
+RSpec/NestedGroups:
+  Max: 5 # default: 3
