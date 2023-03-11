@@ -16,7 +16,7 @@ RSpec.describe Post do
       context 'when title is null' do
         let(:title) { nil }
 
-        it { is_expected.to be_valid }
+        it { is_expected.to be_invalid }
       end
     end
   end
