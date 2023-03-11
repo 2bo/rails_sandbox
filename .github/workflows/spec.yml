@@ -25,3 +25,10 @@ jobs:
     - name: Run RSpec
       run: |
         bundle exec rspec
+
+    - name: Cache test results
+      uses: actions/cache/save@v3
+      with:
+        path: tmp/spec_examples.txt
+        key: ${{ runner.os }}-rspec-example-${{ github.event.pull_request.number }}
+      if: always()
