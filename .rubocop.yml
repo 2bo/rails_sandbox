@@ -5,6 +5,7 @@ AllCops:
 
 require:
   - rubocop-rails
+  - rubocop-rspec
 
 Style/Documentation:
   Enabled: false
