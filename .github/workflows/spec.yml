@@ -27,12 +27,15 @@ jobs:
       uses: actions/cache/restore@v3
       with:
         path: tmp/spec_examples.txt
-        key: ${{ runner.os }}-rspec-examples-${{ github.event.pull_request.number }}
+        key: ${{ runner.os }}-rspec-examples-${{ github.event.pull_request.number }}-${{ hashFiles('tmp/spec_examples.txt') }}
+        restore-keys: ${{ runner.os }}-rspec-examples-${{ github.event.pull_request.number }}-
       
-    - name: Cat examples result
-      if: steps.restore_test_results.outputs.cache-hit == 'true'
+    - name: Run Rspec only failures
       run: |
-        cat tmp/spec_examples.txt
+        if [[ -e tmp/spec_examples.txt && $(grep -c 'failed' tmp/spec_examples.txt) -gt 0 ]]; then
+          cat tmp/spec_examples.txt
+          bundle exec rspec --format progress --only-failures
+        fi
 
     - name: Run RSpec
       run: |
@@ -43,4 +46,4 @@ jobs:
       uses: actions/cache/save@v3
       with:
         path: tmp/spec_examples.txt
-        key: ${{ runner.os }}-rspec-examples-${{ github.event.pull_request.number }}
+        key: ${{ runner.os }}-rspec-examples-${{ github.event.pull_request.number }}-${{ hashFiles('tmp/spec_examples.txt') }}
