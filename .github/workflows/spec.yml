@@ -33,7 +33,7 @@ jobs:
     - name: Run Rspec only failures
       run: |
         if [[ -e tmp/spec_examples.txt && $(grep -c 'failed' tmp/spec_examples.txt) -gt 0 ]]; then
-          cat tmp/spec_examples.txt
+          grep -E "(example_id)|(---)|(failed)" tmp/spec_examples.txt
           bundle exec rspec --format progress --only-failures
         fi
 
