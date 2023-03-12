@@ -1,5 +1,7 @@
 FROM ruby:3.2.1-slim-buster
 
+ENV RUBY_YJIT_ENABLE=1
+
 WORKDIR /myapp
 
 RUN apt-get update && apt-get install -y curl build-essential git sqlite3 libsqlite3-dev
