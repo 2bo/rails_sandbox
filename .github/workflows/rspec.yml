@@ -22,10 +22,6 @@ jobs:
       with:
         ruby-version: 3.2.1
         bundler-cache: true
-    
-    - name: Check Ruby version
-      run: |
-        ruby -v --yjit
 
     - name: Restore test results
       id: 'restore_test_results'
