@@ -14,7 +14,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  rspec:
+  rubocop:
     runs-on: ubuntu-latest
 
     env:
@@ -39,3 +39,5 @@ jobs:
         rubocop_version: gemfile
         rubocop_extensions: rubocop-rails:gemfile rubocop-rspec:gemfile
         reporter: github-pr-review
+        use_bundler: true
+        fail_on_error: true
