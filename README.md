@@ -1,24 +1,24 @@
-# README
+# Rails Sandbox
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This Repository is Sandbox of Ruby on Rails to study, research and trial.
 
-Things you may want to cover:
+## Setup local
 
-* Ruby version
+```bash
+$ docker-compose build
+```
 
-* System dependencies
+```bash
+$ docker-compose run --rm web bin/rails db:migrate
+```
 
-* Configuration
+```bash
+$ docker-compose up -d
+```
 
-* Database creation
+## Run Spec
 
-* Database initialization
+```bash
+$ docker-compose run --rm -e RAILS_ENV=test web bundle exec rspec
+```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
