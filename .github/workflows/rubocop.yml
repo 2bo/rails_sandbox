@@ -1,0 +1,41 @@
+name: Rubocop
+
+on: 
+  pull_request:
+    paths:
+      - '**.rb'
+      - 'Gemfile'
+      - 'Gemfile.lock'
+      - '.github/workflows/rubocop.yml'
+      - '.rubocop.yml'
+      - '.rubocop_todo.yml'
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+
+    env:
+      RUBY_YJIT_ENABLE: 1
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install
+      run: |
+        sudo apt-get update && sudo apt-get install -y curl build-essential git sqlite3 libsqlite3-dev
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.2.1
+        bundler-cache: true
+
+    - name: rubocop
+      uses: reviewdog/action-rubocop@v2
+      with:
+        rubocop_version: gemfile
+        rubocop_extensions: rubocop-rails:gemfile rubocop-rspec:gemfile
+        reporter: github-pr-review
