@@ -5,7 +5,7 @@ ENV RUBY_YJIT_ENABLE=1
 WORKDIR /myapp
 
 RUN apt-get update && apt-get install -y curl build-essential git sqlite3 libsqlite3-dev
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs git
 RUN npm install --global yarn
 
 RUN gem install bundler
