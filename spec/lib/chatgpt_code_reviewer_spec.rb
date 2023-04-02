@@ -12,7 +12,6 @@ RSpec.describe ChatGPTCodeReviewer do
 
     # NOTE: file_path set self file to assure always exist
     let(:file_path) { __FILE__ }
-    # NOTE: diff is dummy
     let(:diff) do
       <<~DIFF
         diff --git a/app/controllers/posts_controller.rb b/app/controllers/posts_controller.rb
@@ -40,6 +39,7 @@ RSpec.describe ChatGPTCodeReviewer do
     let(:mock_client) { instance_double(OpenAI::Client) }
 
     before do
+      allow(ENV).to receive(:fetch).with('OPENAI_API_KEY').and_return('sk-xxxxxxxxxxxxxxxxxxxxxx')
       allow(OpenAI::Client).to receive(:new).and_return(mock_client)
       allow(mock_client).to receive(:chat).and_return(
         { 'id' => 'xxxxxxxxxxxxxxxxxxxxxx',
