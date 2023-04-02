@@ -19,7 +19,7 @@ RSpec.describe ChatGPTCodeReviewer do
         --- a/app/controllers/posts_controller.rb
         +++ b/app/controllers/posts_controller.rb
         @@ -2,7 +2,13 @@
-        #{' '}
+
          class PostsController < ApplicationController
            def index
         -    @posts = Post.all.order(id: :desc)
