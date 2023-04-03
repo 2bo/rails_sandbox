@@ -1,0 +1,35 @@
+name: ChatGPT Ruby Code Review
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+    paths:
+      - '**.rb'
+
+jobs:
+  code-review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.1
+          bundler-cache: true
+
+      - name: review code
+        env:
+          OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          git diff --name-only HEAD^ HEAD | grep '\.rb$' | while read file; do
+            review_result=$(git diff HEAD^ HEAD "$file" | ruby cli/chatgpt_code_reviewer_cli.rb "$file")
+            gh pr comment ${{ github.event.pull_request.number }} --body "${review_result}"
+          done
+
+
