@@ -1,3 +1,4 @@
+name: ChatGPT Ruby Code Review
 
 on:
   pull_request:
@@ -23,7 +24,7 @@ jobs:
       - name: review code
         run: |
           git log --pretty=oneline
-          git diff --name-only HEAD^ HEAD
+          git diff HEAD^ HEAD
 
       - name: review code
         env:
