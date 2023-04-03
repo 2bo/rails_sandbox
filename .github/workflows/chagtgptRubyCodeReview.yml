@@ -31,13 +31,12 @@ jobs:
         env:
           OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          URL: ${{ github.event.pull_request.html_url }}
+          BASE_BRANCH: develop
         run: |
-          git fetch origin develop
-          git diff --name-only origin/develop..HEAD | grep '\.rb$' | while read file; do
-            git diff origin/develop..HEAD "$file"
-            review_result=$(git diff origin/develop..HEAD "$file" | bundle exec ruby cli/chatgpt_code_reviewer_cli.rb "$file")
-            gh pr comment ${{ github.event.pull_request.number }} --body "$review_result"
+          git diff --name-only origin/"${BASE_BRANCH}"..HEAD | grep '\.rb$' | while read file; do
+            git diff origin/"${BASE_BRANCH}"..HEAD "${file}"
+            review_result=$(git diff origin/"${BASE_BRANCH}"..HEAD "${file}" | bundle exec ruby cli/chatgpt_code_reviewer_cli.rb "${file}")
+            gh pr comment ${{ github.event.pull_request.number }} --body "${review_result}"
           done
 
 
