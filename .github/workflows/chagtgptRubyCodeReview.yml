@@ -25,7 +25,7 @@ jobs:
       - name: debug print
         run: |
           git log --pretty=oneline
-          git diff HEAD^ HEAD
+          git diff origin/develop..HEAD
 
       - name: review code
         env:
