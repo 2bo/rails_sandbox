@@ -38,7 +38,7 @@ class ChatGPTCodeReviewer
       After considering The "All Contents:", return the code review against the "Diff:"
       Reviews for specific lines should begin with the format "directories/filename:row number" to indicate the line number of the file.
       An example of the format is "app/models/hello.rb:2".
-      Please output in Japanese.
+      Please output your review in Japanese.
 
       All contents:
       ```
