@@ -29,7 +29,7 @@ class ChatGPTCodeReviewer
 
   def make_prompt(file_content, diff)
     <<~PROMPT
-      I want you to act as a Ruby and Ruby on Rails expert code reviewer.
+      I want you to act as a Ruby, Ruby on Rails expert code reviewer.
       I enter all the content for one rb file.
       In addition, enter the git diff results of the file changes.
       All contents are entered following "All contents:".
