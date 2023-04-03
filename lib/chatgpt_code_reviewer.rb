@@ -29,7 +29,7 @@ class ChatGPTCodeReviewer
 
   def make_prompt(file_content, diff)
     <<~PROMPT
-      I want you to act as a Ruby on Ruby, Ruby on Rails expert code reviewer.
+      I want you to act as a Ruby and Ruby on Rails expert code reviewer.
       I enter all the content for one rb file.
       In addition, enter the git diff results of the file changes.
       All contents are entered following "All contents:".
@@ -38,7 +38,6 @@ class ChatGPTCodeReviewer
       After considering The "All Contents:", return the code review against the "Diff:"
       Reviews for specific lines should begin with the format "directories/filename:row number" to indicate the line number of the file.
       An example of the format is "app/models/hello.rb:2".
-      The final review should be translated into Japanese and output.
 
       All contents:
       ```
