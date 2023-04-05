@@ -1,4 +1,4 @@
-FROM ruby:3.2.1-slim-buster
+FROM ruby:3.2.2-slim-buster
 
 ENV RUBY_YJIT_ENABLE=1
 
