@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post.comments.each do | comment |
-      Rails.logger.info "comment: #{comment.inspect}"
+      Rails.logger.info "comment likes: #{comment.likes.count}"
     end
     render json: @post
   end
