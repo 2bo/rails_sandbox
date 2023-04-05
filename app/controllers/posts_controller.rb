@@ -5,4 +5,12 @@ class PostsController < ApplicationController
     @posts = Post.all.order(id: :desc)
     render json: @posts
   end
+
+  def show
+    @post = Post.find(params[:id])
+    @post.comments.each do
+      Rails.logger.info "comment: #{comment.inspect}"
+    end
+    render json: @post
+  end
 end
