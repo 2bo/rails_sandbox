@@ -36,7 +36,7 @@ class ChatGPTCodeReviewer
       The git diff results are entered following "Diff:".
       The format of the git diff is "+" at the beginning of added lines and "-" at the end of deleted lines.
       After considering The "All Contents:", return the code review against the "Diff:"
-      Reviews for specific lines should begin with the format "directories/filename:row number" to indicate the line number of the file.
+      Reviews for specific lines should begin with the format "directories/filename:row number" to indicate the line number of the All contents.
       An example of the format is "app/models/hello.rb:2".
 
       All contents:
