@@ -6,4 +6,4 @@ require_relative '../lib/chatgpt_code_reviewer'
 file_path = ARGV[0]
 diff = $stdin.read
 
-puts ChatGPTCodeReviewer.new.review_code(file_path, diff)
+puts ChatgptCodeReviewer.new.review_code(file_path, diff)

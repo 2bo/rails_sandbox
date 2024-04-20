@@ -3,10 +3,7 @@
 require 'rails_helper'
 require 'chatgpt_code_reviewer'
 
-# rubocop:disable RSpec/FilePath
-RSpec.describe ChatGPTCodeReviewer do
-  # rubocop:enable RSpec/FilePath
-
+RSpec.describe ChatgptCodeReviewer do
   describe 'review_code' do
     subject(:review_code) { described_class.new.review_code(file_path, diff) }
 

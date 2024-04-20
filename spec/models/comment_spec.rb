@@ -16,7 +16,7 @@ RSpec.describe Comment do
       context 'when content is null' do
         let(:content) { nil }
 
-        it { is_expected.to be_invalid }
+        it { is_expected.not_to be_valid }
       end
     end
   end

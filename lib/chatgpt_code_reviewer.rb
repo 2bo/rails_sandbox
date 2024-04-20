@@ -2,7 +2,7 @@
 
 require 'openai'
 
-class ChatGPTCodeReviewer
+class ChatgptCodeReviewer
   def initialize
     access_token = ENV.fetch('OPENAI_API_KEY')
     @client = OpenAI::Client.new(access_token:)
