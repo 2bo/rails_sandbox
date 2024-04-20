@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y curl build-essential git sqlite3 libsql
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs git
 RUN npm install --global yarn
 
-RUN gem install bundler
+RUN gem install bundler -v 2.4.7
 COPY Gemfile* /myapp/
 RUN bundle install
 
