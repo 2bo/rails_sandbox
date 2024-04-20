@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :comment do
-    association :post
+    post
     content { 'content' }
   end
 end
