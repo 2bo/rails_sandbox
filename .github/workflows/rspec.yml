@@ -25,7 +25,7 @@ jobs:
 
     - name: Restore test results
       id: 'restore_test_results'
-      uses: actions/cache/restore@v3
+      uses: actions/cache/restore@v4
       with:
         path: tmp/spec_examples.txt
         key: ${{ runner.os }}-rspec-examples-${{ github.event.pull_request.number }}-${{ hashFiles('tmp/spec_examples.txt') }}
@@ -44,7 +44,7 @@ jobs:
 
     - name: Cache test results
       if: always()
-      uses: actions/cache/save@v3
+      uses: actions/cache/save@v4
       with:
         path: tmp/spec_examples.txt
         key: ${{ runner.os }}-rspec-examples-${{ github.event.pull_request.number }}-${{ hashFiles('tmp/spec_examples.txt') }}
