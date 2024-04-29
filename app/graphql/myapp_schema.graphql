@@ -14,7 +14,7 @@ type Post {
   body: String
   createdAt: ISO8601DateTime!
   id: ID!
-  title: String!
+  title: String
 }
 
 type Query {
