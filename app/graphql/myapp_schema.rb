@@ -8,13 +8,13 @@ class MyappSchema < GraphQL::Schema
   use GraphQL::Dataloader
 
   # GraphQL-Ruby calls this when something goes wrong while running a query:
-  def self.type_error(err, context)
-    # if err.is_a?(GraphQL::InvalidNullError)
-    #   # report to your bug tracker here
-    #   return nil
-    # end
-    super
-  end
+  # def self.type_error(err, context)
+  #   if err.is_a?(GraphQL::InvalidNullError)
+  #     # report to your bug tracker here
+  #     return nil
+  #   end
+  #   super
+  # end
 
   # Union and Interface Resolution
   def self.resolve_type(_abstract_type, _obj, _ctx)
@@ -38,5 +38,9 @@ class MyappSchema < GraphQL::Schema
   def self.object_from_id(global_id, _query_ctx)
     # For example, use Rails' GlobalID library (https://github.com/rails/globalid):
     GlobalID.find(global_id)
+  end
+
+  rescue_from(ActiveRecord::RecordNotFound) do |_err, _obj, _args, _ctx, field|
+    raise GraphQL::ExecutionError, "#{field.type.unwrap.graphql_name} not found"
   end
 end
