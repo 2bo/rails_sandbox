@@ -15,3 +15,12 @@ RSpec/ExampleLength:
 
 RSpec/NestedGroups:
   Max: 5 # default: 3
+
+RSpec/MultipleExpectations:
+  Max: 5
+
+Metrics/MethodLength:
+  Max: 20
+
+Naming/MethodParameterName:
+  MinNameLength: 1
