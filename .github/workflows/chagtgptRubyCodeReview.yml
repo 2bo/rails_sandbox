@@ -3,8 +3,9 @@ name: ChatGPT Ruby Code Review
 on:
   pull_request:
     types: [opened, ready_for_review, synchronize]
-    paths:
-      - '**.rb'
+    # disable
+    paths-ignore:
+      - '**'
 
 jobs:
   code-review:
