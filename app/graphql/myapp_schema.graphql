@@ -1,0 +1,28 @@
+"""
+An ISO 8601-encoded datetime
+"""
+scalar ISO8601DateTime @specifiedBy(url: "https://tools.ietf.org/html/rfc3339")
+
+type Mutation {
+  """
+  An example field added by the generator
+  """
+  testField: String!
+}
+
+type Post {
+  body: String
+  createdAt: ISO8601DateTime!
+  id: ID!
+  title: String!
+  updatedAt: ISO8601DateTime!
+}
+
+type Query {
+  post(id: ID!): Post!
+
+  """
+  An example field added by the generator
+  """
+  testField: String!
+}
