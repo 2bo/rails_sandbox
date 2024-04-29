@@ -4,8 +4,9 @@ module Resolvers
   class PostResolver < BaseResolver
     type Types::PostType, null: false
     argument :id, ID
+    argument :title, String, required: true
 
-    def resolve(id:)
+    def resolve(id:, title: nil)
       ::Post.find(id)
     end
   end
