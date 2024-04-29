@@ -13,7 +13,6 @@ RSpec.describe 'Posts' do
           createdAt
           id
           title
-          updatedAt
         }
       }
     GRAPHQL
@@ -35,7 +34,6 @@ RSpec.describe 'Posts' do
           title: sample_post.title,
           body: sample_post.body,
           createdAt: sample_post.created_at.iso8601,
-          updatedAt: sample_post.updated_at.iso8601
         }
       )
       expect(parsed_response[:errors]).to be_nil

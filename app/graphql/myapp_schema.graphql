@@ -15,7 +15,6 @@ type Post {
   createdAt: ISO8601DateTime!
   id: ID!
   title: String!
-  updatedAt: ISO8601DateTime!
 }
 
 type Query {
