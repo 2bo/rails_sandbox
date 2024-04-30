@@ -14,12 +14,12 @@ type Post {
   body: String
   createdAt: ISO8601DateTime!
   id: ID!
-  title: String!
-  updatedAt: ISO8601DateTime!
+  published: Boolean!
+  title: String
 }
 
 type Query {
-  post(id: ID!): Post!
+  post(id: ID!, title: String!): Post!
 
   """
   An example field added by the generator
