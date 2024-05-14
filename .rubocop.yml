@@ -24,3 +24,6 @@ Metrics/MethodLength:
 
 Naming/MethodParameterName:
   MinNameLength: 1
+
+Metrics/AbcSize:
+  Max: 20
