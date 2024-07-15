@@ -110,7 +110,7 @@ GEM
       railties (>= 5.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    graphql (2.3.7)
+    graphql (2.3.8)
       base64
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
