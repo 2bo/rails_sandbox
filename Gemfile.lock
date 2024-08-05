@@ -108,10 +108,12 @@ GEM
     factory_bot_rails (6.4.3)
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
+    fiber-storage (0.1.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    graphql (2.3.10)
+    graphql (2.3.12)
       base64
+      fiber-storage
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
