@@ -108,12 +108,13 @@ GEM
     factory_bot_rails (6.4.4)
       factory_bot (~> 6.5)
       railties (>= 5.0.0)
-    fiber-storage (1.0.0)
+    fiber-storage (1.0.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    graphql (2.3.19)
+    graphql (2.5.6)
       base64
       fiber-storage
+      logger
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
@@ -134,6 +135,7 @@ GEM
     json (2.11.3)
     language_server-protocol (3.17.0.4)
     lint_roller (1.1.0)
+    logger (1.7.0)
     loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
